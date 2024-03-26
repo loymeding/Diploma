@@ -1,0 +1,25 @@
+- include: config.config
+- include: src.components.dataloaders.dataloaders
+- execute: src.components.dataloaders.dataloaders get_dataloader config.config batch_size
+    config.config shuffle config.config train_dir
+- move: config.config train_loader src.components.dataloaders.dataloaders __result__
+- execute: src.components.dataloaders.dataloaders get_dataloader config.config batch_size
+    config.config shuffle config.config test_dir
+- move: config.config test_loader src.components.dataloaders.dataloaders __result__
+- execute: src.components.dataloaders.dataloaders get_dataloader config.config batch_size
+    config.config shuffle config.config valid_dir
+- move: config.config valid_loader src.components.dataloaders.dataloaders __result__
+- include: src.components.models.resnet
+- execute: src.components.models.resnet get_model config.config num_classes
+- move: config.config model src.components.models.resnet __result__
+- include: src.components.train.train
+- execute: src.components.train.train train config.config model config.config train_loader
+    config.config valid_loader             config.config criterion config.config optimizer
+    config.config accuracy_fn config.config num_epochs config.config device
+- move: config.config metrics src.components.train.train __result__
+- include: src.components.predict.predict
+- execute: src.components.predict.predict predict config.config model config.config
+    test_loader config.config device
+- move: config.config predictions src.components.predict.predict __result__
+- include: builtins
+- execute: builtins print config.config predictions

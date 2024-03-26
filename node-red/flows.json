@@ -1,0 +1,519 @@
+[
+    {
+        "id": "e15af5791eb569ed",
+        "type": "tab",
+        "label": "Поток 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "11b4c17d3f0ade24",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Датасеты",
+        "style": {
+            "fill": "#92d04f",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000",
+            "stroke": "#000000"
+        },
+        "nodes": [
+            "5366d301de771a06"
+        ],
+        "x": 34,
+        "y": 679,
+        "w": 192,
+        "h": 82
+    },
+    {
+        "id": "db82fed0ad1cf99c",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Модели",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#92d04f",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "a70ccfcc5bbe30c8",
+            "da8e863d0be2c5d4"
+        ],
+        "x": 254,
+        "y": 679,
+        "w": 192,
+        "h": 122
+    },
+    {
+        "id": "9206e1e401d2a7a5",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Функции пайплайна",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#92d04f",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "195693ae5bd0b82e",
+            "f220aa249445e4af"
+        ],
+        "x": 474,
+        "y": 679,
+        "w": 172,
+        "h": 122
+    },
+    {
+        "id": "75ab56a5a380c657",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Конфиги",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#92d04f",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "c12c0f018f3e2ba2"
+        ],
+        "x": 674,
+        "y": 679,
+        "w": 252,
+        "h": 82
+    },
+    {
+        "id": "da9a87cff975df12",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Конфиг, датасет",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ffffbf",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "3acf7866841a69c9",
+            "a1abf59581c2515f"
+        ],
+        "x": 14,
+        "y": 179,
+        "w": 212,
+        "h": 122
+    },
+    {
+        "id": "abc31faefabe000f",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Модель",
+        "style": {
+            "stroke": "#000000",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000",
+            "fill": "#ffffbf"
+        },
+        "nodes": [
+            "e91af1b18f319ea8"
+        ],
+        "x": 54,
+        "y": 319,
+        "w": 172,
+        "h": 82
+    },
+    {
+        "id": "ad4435ddee664c06",
+        "type": "group",
+        "z": "e15af5791eb569ed",
+        "name": "Функции",
+        "style": {
+            "stroke": "#000000",
+            "fill": "#ffffbf",
+            "label": true,
+            "label-position": "n",
+            "color": "#000000"
+        },
+        "nodes": [
+            "251b66a6e167e737",
+            "e72e0da9fc376cb1"
+        ],
+        "x": 54,
+        "y": 419,
+        "w": 172,
+        "h": 122
+    },
+    {
+        "id": "251b66a6e167e737",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "ad4435ddee664c06",
+        "name": "Train",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--train_path nikita.train",
+        "payloadType": "str",
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "5637e48d66ed2f68"
+            ]
+        ]
+    },
+    {
+        "id": "e72e0da9fc376cb1",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "ad4435ddee664c06",
+        "name": "Predict",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--predict_path nikita.predict",
+        "payloadType": "str",
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "5637e48d66ed2f68"
+            ]
+        ]
+    },
+    {
+        "id": "5637e48d66ed2f68",
+        "type": "join",
+        "z": "e15af5791eb569ed",
+        "name": "Объединить",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": " ",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "5",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "5663cada0af48b10"
+            ]
+        ]
+    },
+    {
+        "id": "3b2ea00f2479142d",
+        "type": "debug",
+        "z": "e15af5791eb569ed",
+        "name": "Отладка",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5663cada0af48b10",
+        "type": "exec",
+        "z": "e15af5791eb569ed",
+        "command": "python C:\\Users\\sharn\\Desktop\\nikita\\make_json.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Команды",
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [],
+            [
+                "f97c4e3292a453f3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f97c4e3292a453f3",
+        "type": "pythonshell in",
+        "z": "e15af5791eb569ed",
+        "name": "Запуск пайплайна",
+        "pyfile": "C:\\Users\\sharn\\Desktop\\nikita\\main.py",
+        "virtualenv": "",
+        "continuous": false,
+        "stdInData": false,
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "3b2ea00f2479142d"
+            ]
+        ]
+    },
+    {
+        "id": "5366d301de771a06",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "11b4c17d3f0ade24",
+        "name": "Animals10",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--dataloaders_path nikita.dataloaders",
+        "payloadType": "str",
+        "x": 140,
+        "y": 720,
+        "wires": [
+            []
+        ],
+        "icon": "node-red/db.svg"
+    },
+    {
+        "id": "a70ccfcc5bbe30c8",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "db82fed0ad1cf99c",
+        "name": "ResNet",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--model_path nikita.resnet",
+        "payloadType": "str",
+        "x": 370,
+        "y": 720,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-archive"
+    },
+    {
+        "id": "da8e863d0be2c5d4",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "db82fed0ad1cf99c",
+        "name": "VGGNet",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--model_path nikita.vgg16",
+        "payloadType": "str",
+        "x": 360,
+        "y": 760,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-archive"
+    },
+    {
+        "id": "195693ae5bd0b82e",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "9206e1e401d2a7a5",
+        "name": "Train",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--train_path nikita.train",
+        "payloadType": "str",
+        "x": 570,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f220aa249445e4af",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "9206e1e401d2a7a5",
+        "name": "Predict",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--predict_path nikita.predict",
+        "payloadType": "str",
+        "x": 570,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c12c0f018f3e2ba2",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "75ab56a5a380c657",
+        "name": "Classification Config",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--config_path nikita.config",
+        "payloadType": "str",
+        "x": 810,
+        "y": 720,
+        "wires": [
+            []
+        ],
+        "icon": "node-red/cog.svg"
+    },
+    {
+        "id": "3acf7866841a69c9",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "da9a87cff975df12",
+        "name": "Animals10",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--dataloaders_path nikita.dataloaders",
+        "payloadType": "str",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "5637e48d66ed2f68"
+            ]
+        ],
+        "icon": "node-red/db.svg"
+    },
+    {
+        "id": "a1abf59581c2515f",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "da9a87cff975df12",
+        "name": "Class Config",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--config_path nikita.config",
+        "payloadType": "str",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "5637e48d66ed2f68"
+            ]
+        ],
+        "icon": "node-red/cog.svg"
+    },
+    {
+        "id": "e91af1b18f319ea8",
+        "type": "inject",
+        "z": "e15af5791eb569ed",
+        "g": "abc31faefabe000f",
+        "name": "ResNet",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "--model_path nikita.resnet",
+        "payloadType": "str",
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "5637e48d66ed2f68"
+            ]
+        ],
+        "icon": "font-awesome/fa-archive"
+    }
+]
