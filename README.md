@@ -54,7 +54,9 @@ python exec_commands.py
 ![](https://github.com/loymeding/Diploma/blob/main/images/exec-flow.png)
 
 ### 3. Запуск узла
+
 ![](https://github.com/loymeding/Diploma/blob/main/images/node-red-flow.png)
+
 Развернуть узел и последовательно нажать на запуск всех узлов: Class Config, Animals10, ResNet, Train, Predict. Затем запустить узел "Запуск пайплайна".
 
 
