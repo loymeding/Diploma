@@ -48,8 +48,11 @@ python exec_commands.py
 ### 1. Импортировать в Node-RED flows из директории node-red/flows.json
 ### 2. Изменить содержание узлов
 Необходимо открыть узлы "Команды" и "Запуск пайплайна", расположенные в импортированном потоке и изменить в них пути к функциям на абсолютные пути, соответствующие расположению проекта.
-![](https://github.com/loymeding/Diploma/blob/main/images/exec-flow.png)
+
 ![](https://github.com/loymeding/Diploma/blob/main/images/python-pipeline-flow.png)
+
+![](https://github.com/loymeding/Diploma/blob/main/images/exec-flow.png)
+
 ### 3. Запуск узла
 ![](https://github.com/loymeding/Diploma/blob/main/images/node-red-flow.png)
 Развернуть узел и последовательно нажать на запуск всех узлов: Class Config, Animals10, ResNet, Train, Predict. Затем запустить узел "Запуск пайплайна".
