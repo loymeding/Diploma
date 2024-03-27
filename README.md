@@ -26,7 +26,8 @@ python boto/download_data.py
 Изначально конфиг полностью настроен под классификацию на датасете Animals10.
 
 ## Ручной запуск
-### 1. Для запуска проекта без Node-RED необходимо вручную запустить скрипт, отвечающий за создание конфига, содержащего перечень команд для работы пайплайна. Для этого необходимо запустить скрипт src/make_json.py, передав в него следующие параметры:
+### 1. Для запуска проекта без Node-RED необходимо вручную запустить скрипт, отвечающий за создание конфига, содержащего перечень команд для работы пайплайна
+Для этого необходимо запустить скрипт src/make_json.py, передав в него следующие параметры:
 + --config_path: путь к конфигу (по умолчанию config.config)
 + --dataloaders_path: путь к функции создания даталоадеров (по умолчанию src.components.dataloaders.dataloaders)
 + --model_path: путь к функции, инициализирующей модель (по умолчанию src.components.models.resnet)
@@ -39,10 +40,13 @@ python boto/download_data.py
 python src/make_json.py --config_path config.config --dataloaders_path src.components.dataloaders.dataloaders --model_path src.components.models.resnet --train_path src.components.train.train --predict_path src.components.predict.predict
 ```
 ### 2. Запуск пайплайна
-Далее необходимо запустить скрипт exec_commands.py
+Далее, когда имеется файл commands.yaml необходимо запустить скрипт exec_commands.py
 ```bash
 python exec_commands.py
 ```
+
+### ВАЖНО!
+Перед тем как запускать скрипт make_json.py необходимо удалять старый commands.yaml файл, потому что данный скрипт не перезаписывает файл, а добавляет указанные команды в конец файла. Поэтому если необходимо запустить пайплайн с тем же набором команд, то создавать новый commands.yaml не обязательно, но если необходимо изменить список команд, то необъодимо удалить старый файл.
 
 ## При работе с Node-RED
 ### 1. Импортировать в Node-RED flows из директории node-red/flows.json
