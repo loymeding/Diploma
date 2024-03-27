@@ -34,9 +34,9 @@ def accuracy_fn(outputs, targets):
 
 project_dir = os.getenv('project_dir')
 data_path = project_dir + '/data/raw/animals10/'
-train_dir = data_path + 'dataset/train'
-test_dir = data_path + 'dataset/test'
-valid_dir = data_path + 'dataset/valid'
+train_dir = data_path + 'train'
+test_dir = data_path + 'test'
+valid_dir = data_path + 'valid'
 
 num_classes = 10
 batch_size = 32
