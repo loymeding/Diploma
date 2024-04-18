@@ -5,6 +5,12 @@ PROJECT_DIR := $(shell pwd)
 install:
 	pip install -r requirements.txt
 
+# Цель для создания файла .env и добавления в него значений
+create_env_file:
+	@echo "aws_access_key_id=jjQG3AystFqYVxCWUghFRs" > .env
+	@echo "aws_secret_access_key=bwEjD23yDj5kjSavtSB35MNBWnGFVSvBFVjofH6ckpjG" >> .env
+	@echo "project_dir=$(PROJECT_DIR)" >> .env
+
 # Цель для добавления переменной project_dir в файл .env
 add_project_dir_to_env:
 	@echo "project_dir=$(PROJECT_DIR)" >> .env
